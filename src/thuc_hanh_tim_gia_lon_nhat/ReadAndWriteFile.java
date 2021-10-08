@@ -17,7 +17,10 @@ public class ReadAndWriteFile {
             BufferedReader br = new BufferedReader(new FileReader(file));
             String line = "";
             while ((line = br.readLine()) != null) {
-                numbers.add(Integer.parseInt(line));
+                String[] numbersString = line.split(",");
+                for (int i = 0; i < numbersString.length; i++) {
+                    numbers.add(Integer.parseInt(numbersString[i]));
+                }
             }
             br.close();
         } catch (Exception e) {
@@ -49,7 +52,7 @@ public class ReadAndWriteFile {
 
     public static void main(String[] args) {
         ReadAndWriteFile readAndWriteFile = new ReadAndWriteFile();
-        List<Integer> numbers = readAndWriteFile.readFile("numbers.txt");
+        List<Integer> numbers = readAndWriteFile.readFile("number.txt");
         int maxValue = findMax(numbers);
         readAndWriteFile.writeFile("result.txt", maxValue);
     }
